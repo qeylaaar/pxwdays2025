@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencatatan Wirus (Tingkat 3) - Project x Wirus Day 2025</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pencatatan Wirus (Tingkat 3)</h1>
+            <p class="theme">Beyond The Blueprint</p>
+        </header>
+        <main>
+            <form id="form-wirus">
+                <div class="form-grup">
+                    <label for="nama-tim">Nama Tim</label>
+                    <input type="text" id="nama-tim" required>
+                </div>
+                <div class="form-grup">
+                    <label for="kelas-wirus">Kelas</label>
+                    <input type="text" id="kelas-wirus" required placeholder="Contoh: 3A SI">
+                </div>
+                <div class="form-grup">
+                    <label for="pendapatan">Total Pendapatan (Rp)</label>
+                    <input type="number" id="pendapatan" min="0" required placeholder="Masukkan angka tanpa titik/koma">
+                </div>
+                <button type="submit">Catat Pendapatan</button>
+            </form>
+
+            <div class="hasil-container">
+                <div class="header-hasil">
+                    <h2>Daftar Pencatatan Wirus</h2>
+                    <a href="juara.html" class="tombol-juara">Lihat Juara Wirus</a>
+                </div>
+                <div id="hasil-wirus">
+                    <!-- Daftar hasil wirus akan muncul di sini -->
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="index.html" class="tombol-juara">Kembali ke Penilaian</a>
+            </div>
+        </main>
+    </div>
+    <script src="wirus.js"></script>
+</body>
+</html> 

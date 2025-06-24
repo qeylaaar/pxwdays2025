@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #0d47a1; /* Biru tua */
+    --secondary-color: #1976d2; /* Biru sedang */
+    --accent-color: #64b5f6; /* Biru muda */
+    --background-color: #121212; /* Latar belakang gelap */
+    --surface-color: #1e1e1e; /* Warna permukaan untuk form */
+    --text-color: #e0e0e0; /* Warna teks utama */
+    --border-color: #2c2c2c;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--surface-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 20px;
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent-color);
+    font-size: 2.5em;
+    margin: 0;
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.theme {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2em;
+    color: var(--secondary-color);
+    letter-spacing: 2px;
+}
+
+#form-penilaian {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-grup {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 1em;
+    box-sizing: border-box; /* Important for padding */
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+fieldset {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+legend {
+    padding: 0 10px;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 0 15px var(--secondary-color);
+}
+
+.hasil-container {
+    margin-top: 40px;
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+#hasil-penilaian {
+    margin-top: 20px;
+    display: grid;
+    gap: 15px;
+}
+
+.kartu-hasil {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 5px solid var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.kartu-hasil .info {
+    flex-grow: 1;
+}
+
+.kartu-hasil .info h3 {
+    margin: 0 0 5px 0;
+    color: var(--accent-color);
+}
+
+.kartu-hasil .info p {
+    margin: 0;
+    color: #b0b0b0;
+}
+
+.kartu-hasil .skor {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.tombol-hapus {
+    background-color: #c62828; /* Merah gelap */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: background-color 0.2s;
+}
+
+.tombol-hapus:hover {
+    background-color: #e53935; /* Merah lebih terang */
+}
+
+.header-hasil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-hasil h2 {
+    margin: 0;
+}
+
+.main-nav {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.main-nav a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+.tombol-juara {
+    background-color: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tombol-juara:hover {
+    background-color: var(--secondary-color);
+    color: white;
+} 
