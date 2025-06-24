@@ -1,80 +1,104 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Penilaian tingkat 1 & 2
-    const containerJuara1 = document.getElementById('juara-tingkat-1');
-    const containerJuara2 = document.getElementById('juara-tingkat-2');
-    // Wirus tingkat 3
-    const containerJuaraWirus = document.getElementById('juara-wirus');
+    const STORAGE_KEY_1 = 'dataPenilaianTingkat1';
+    const STORAGE_KEY_2 = 'dataPenilaianTingkat2';
+    const STORAGE_KEY_3 = 'dataWirusTingkat3'; // Assuming this is the key from wirus.js
 
-    // Storage key
-    const STORAGE_PENILAIAN = 'dataPenilaianBeyondTheBlueprint';
-    const STORAGE_WIRUS = 'dataWirusTingkat3';
+    const container1 = document.getElementById('juara-tingkat-1');
+    const container2 = document.getElementById('juara-tingkat-2');
+    const container3 = document.getElementById('juara-wirus');
 
-    // Ambil data penilaian
-    function ambilDataPenilaian() {
-        const dataJSON = localStorage.getItem(STORAGE_PENILAIAN);
-        return dataJSON ? JSON.parse(dataJSON) : [];
-    }
-    // Ambil data wirus
-    function ambilDataWirus() {
-        const dataJSON = localStorage.getItem(STORAGE_WIRUS);
+    const exportBtn1 = document.getElementById('export-excel-1');
+    const exportBtn2 = document.getElementById('export-excel-2');
+    const exportBtn3 = document.getElementById('export-excel-3');
+
+    function ambilData(key) {
+        const dataJSON = localStorage.getItem(key);
         return dataJSON ? JSON.parse(dataJSON) : [];
     }
 
-    // Tampilkan juara penilaian (tingkat 1/2)
-    function tampilkanJuaraPenilaian(container, dataTingkat) {
-        container.innerHTML = '';
-        if (dataTingkat.length === 0) {
-            container.innerHTML = '<p>Belum ada data untuk ditampilkan.</p>';
-            return;
-        }
-        dataTingkat.sort((a, b) => b.skor - a.skor);
-        const skorTertinggi = dataTingkat[0].skor;
-        const paraJuara = dataTingkat.filter(data => data.skor === skorTertinggi);
-        paraJuara.forEach(juara => {
-            const kartuJuara = document.createElement('div');
-            kartuJuara.classList.add('kartu-hasil');
-            kartuJuara.innerHTML = `
-                <div class="info">
-                    <h3>${juara.nama}</h3>
-                    <p>Kelas: ${juara.kelas}</p>
-                </div>
-                <div class="skor">${juara.skor}</div>
-            `;
-            container.appendChild(kartuJuara);
-        });
-    }
-
-    // Tampilkan juara wirus (tingkat 3)
-    function tampilkanJuaraWirus(container, data) {
+    function renderTabel(container, data, jenis) {
         container.innerHTML = '';
         if (data.length === 0) {
             container.innerHTML = '<p>Belum ada data untuk ditampilkan.</p>';
             return;
         }
-        data.sort((a, b) => b.pendapatan - a.pendapatan);
-        const pendapatanTertinggi = data[0].pendapatan;
-        const paraJuara = data.filter(d => d.pendapatan === pendapatanTertinggi);
-        paraJuara.forEach(juara => {
-            const kartu = document.createElement('div');
-            kartu.classList.add('kartu-hasil');
-            kartu.innerHTML = `
-                <div class="info">
-                    <h3>${juara.nama}</h3>
-                    <p>Kelas: ${juara.kelas}</p>
-                </div>
-                <div class="skor">Rp ${juara.pendapatan.toLocaleString('id-ID')}</div>
+
+        const isWirus = jenis === 'wirus';
+        if (isWirus) {
+            data.sort((a, b) => b.pendapatan - a.pendapatan);
+        } else {
+            data.sort((a, b) => b.skor - a.skor);
+        }
+        
+        const table = document.createElement('table');
+        table.className = 'tabel-hasil';
+        
+        const header = `
+            <thead>
+                <tr>
+                    <th>Peringkat</th>
+                    <th>Nama Kelompok</th>
+                    <th>Kelas</th>
+                    <th>${isWirus ? 'Pendapatan' : 'Skor'}</th>
+                </tr>
+            </thead>
+        `;
+        
+        const body = data.map((item, index) => {
+            const skorOrPendapatan = isWirus ? `Rp ${item.pendapatan.toLocaleString('id-ID')}` : item.skor;
+            return `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.nama}</td>
+                    <td>${item.kelas}</td>
+                    <td>${skorOrPendapatan}</td>
+                </tr>
             `;
-            container.appendChild(kartu);
-        });
+        }).join('');
+
+        table.innerHTML = `${header}<tbody>${body}</tbody>`;
+        container.appendChild(table);
     }
 
-    // Proses data
-    const semuaDataPenilaian = ambilDataPenilaian();
-    const dataTingkat1 = semuaDataPenilaian.filter(d => d.kelas.startsWith('1'));
-    const dataTingkat2 = semuaDataPenilaian.filter(d => d.kelas.startsWith('2'));
-    const semuaDataWirus = ambilDataWirus();
+    function exportToExcel(data, jenis) {
+        if (data.length === 0) {
+            alert('Tidak ada data untuk diekspor.');
+            return;
+        }
 
-    tampilkanJuaraPenilaian(containerJuara1, dataTingkat1);
-    tampilkanJuaraPenilaian(containerJuara2, dataTingkat2);
-    tampilkanJuaraWirus(containerJuaraWirus, semuaDataWirus);
+        const isWirus = jenis === 'wirus';
+        if (isWirus) {
+            data.sort((a, b) => b.pendapatan - a.pendapatan);
+        } else {
+            data.sort((a, b) => b.skor - a.skor);
+        }
+
+        let csv = `Peringkat,Nama Kelompok,Kelas,${isWirus ? 'Pendapatan' : 'Skor'}\n`;
+        data.forEach((item, index) => {
+            const skorOrPendapatan = isWirus ? item.pendapatan : item.skor;
+            csv += `${index + 1},"${item.nama}","${item.kelas}",${skorOrPendapatan}\n`;
+        });
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `peringkat_${jenis}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    const data1 = ambilData(STORAGE_KEY_1);
+    const data2 = ambilData(STORAGE_KEY_2);
+    const data3 = ambilData(STORAGE_KEY_3);
+
+    renderTabel(container1, data1, 'tingkat1');
+    renderTabel(container2, data2, 'tingkat2');
+    renderTabel(container3, data3, 'wirus');
+
+    exportBtn1.addEventListener('click', () => exportToExcel(data1, 'tingkat1'));
+    exportBtn2.addEventListener('click', () => exportToExcel(data2, 'tingkat2'));
+    exportBtn3.addEventListener('click', () => exportToExcel(data3, 'wirus'));
 }); 

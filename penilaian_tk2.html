@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penilaian Tingkat 2 - Project x Wirus Day 2025</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="main-nav">
+                <a href="penilaian_tk1.html">Penilaian TK 1</a>
+                <a href="penilaian_tk2.html" class="active">Penilaian TK 2</a>
+                <a href="wirus.html">Wirus (Tingkat 3)</a>
+                <a href="juara.html">Juara</a>
+            </nav>
+            <h1>Penilaian Tingkat 2</h1>
+            <p class="theme">Beyond The Blueprint</p>
+        </header>
+        <main>
+            <div class="form-section">
+                <form id="form-penilaian-2">
+                    <div class="form-grup">
+                        <label for="nama-kelompok-2">Nama Kelompok</label>
+                        <input type="text" id="nama-kelompok-2" required>
+                    </div>
+                    <div class="form-grup">
+                        <label for="kelas-2">Kelas</label>
+                        <select id="kelas-2" required>
+                            <option value="" disabled selected>Pilih Kelas</option>
+                            <option value="2A SI">2A SI</option>
+                            <option value="2B SI">2B SI</option>
+                            <option value="2 TRPL">2 TRPL</option>
+                        </select>
+                    </div>
+                    <fieldset>
+                        <legend>Input Poin Stiker</legend>
+                        <div class="form-grup stiker-input">
+                            <label for="stiker-mitra-2">Stiker Mitra (5 Poin)</label>
+                            <input type="number" id="stiker-mitra-2" min="0" value="0">
+                        </div>
+                        <div class="form-grup stiker-input">
+                            <label for="stiker-pengunjung-2">Stiker Pengunjung (5 Poin)</label>
+                            <input type="number" id="stiker-pengunjung-2" min="0" value="0">
+                        </div>
+                        <div class="form-grup stiker-input">
+                            <label for="stiker-dosen-2">Stiker Dosen (20 Poin)</label>
+                            <input type="number" id="stiker-dosen-2" min="0" value="0">
+                        </div>
+                    </fieldset>
+                    <button type="submit">Hitung & Simpan Nilai Tingkat 2</button>
+                </form>
+                <div class="hasil-container">
+                    <div class="header-hasil">
+                        <h3>Hasil Penilaian Tingkat 2</h3>
+                    </div>
+                    <div id="hasil-penilaian-2">
+                        <!-- Hasil tingkat 2 -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script_tk2.js"></script>
+</body>
+</html> 

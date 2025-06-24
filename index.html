@@ -3,72 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Penilaian Project x Wirus Day 2025 - Beyond The Blueprint</title>
+    <title>Selamat Datang - Project x Wirus Day 2025</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+        }
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5em;
+        }
+        .welcome-desc {
+            font-size: 1.2rem;
+            margin-bottom: 2em;
+            text-align: center;
+        }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5em;
+            justify-content: center;
+        }
+        .nav-btn {
+            padding: 1em 2.5em;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background: #2d8cff;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        .nav-btn:hover {
+            background: #1761b0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <nav class="main-nav">
-                <a href="index.html">Penilaian</a>
-                <a href="wirus.html">Wirus (Tingkat 3)</a>
-                <a href="juara.html">Juara</a>
-            </nav>
-            <h1>Sistem Penilaian Project x Wirus Day 2025</h1>
+        <header style="text-align:center; margin-bottom: 2em;">
+            <h1 class="welcome-title">Selamat Datang di Sistem Penilaian<br>Project x Wirus Day 2025</h1>
             <p class="theme">Beyond The Blueprint</p>
         </header>
         <main>
-            <form id="form-penilaian">
-                <div class="form-grup">
-                    <label for="nama-kelompok">Nama Kelompok</label>
-                    <input type="text" id="nama-kelompok" required>
+            <div class="welcome-container">
+                <div class="welcome-desc">
+                    Silakan pilih menu di bawah untuk melakukan penilaian, pencatatan wirus, atau melihat juara.<br>
+                    Sistem ini digunakan untuk mendukung kelancaran acara Project x Wirus Day 2025.
                 </div>
-                <div class="form-grup">
-                    <label for="kelas">Kelas</label>
-                    <select id="kelas" required>
-                        <option value="" disabled selected>Pilih Kelas</option>
-                        <optgroup label="Tingkat 1">
-                            <option value="1A SI">1A SI</option>
-                            <option value="1B SI">1B SI</option>
-                            <option value="1A TRPL">1A TRPL</option>
-                            <option value="1B TRPL">1B TRPL</option>
-                        </optgroup>
-                        <optgroup label="Tingkat 2">
-                            <option value="2A SI">2A SI</option>
-                            <option value="2B SI">2B SI</option>
-                            <option value="2 TRPL">2 TRPL</option>
-                        </optgroup>
-                    </select>
-                </div>
-                <fieldset>
-                    <legend>Input Poin Stiker</legend>
-                    <div class="form-grup stiker-input">
-                        <label for="stiker-mitra">Stiker Mitra (5 Poin)</label>
-                        <input type="number" id="stiker-mitra" min="0" value="0">
-                    </div>
-                    <div class="form-grup stiker-input">
-                        <label for="stiker-pengunjung">Stiker Pengunjung (5 Poin)</label>
-                        <input type="number" id="stiker-pengunjung" min="0" value="0">
-                    </div>
-                    <div class="form-grup stiker-input">
-                        <label for="stiker-dosen">Stiker Dosen (20 Poin)</label>
-                        <input type="number" id="stiker-dosen" min="0" value="0">
-                    </div>
-                </fieldset>
-                <button type="submit">Hitung & Simpan Nilai</button>
-            </form>
-
-            <div class="hasil-container">
-                <div class="header-hasil">
-                    <h2>Hasil Penilaian</h2>
-                    <a href="juara.html" class="tombol-juara">Lihat Papan Peringkat</a>
-                </div>
-                <div id="hasil-penilaian">
-                    <!-- Hasil akan ditampilkan di sini -->
+                <div class="nav-buttons">
+                    <a href="penilaian_tk1.html" class="nav-btn">Penilaian Tingkat 1</a>
+                    <a href="penilaian_tk2.html" class="nav-btn">Penilaian Tingkat 2</a>
+                    <a href="wirus.html" class="nav-btn">Wirus (Tingkat 3)</a>
+                    <a href="juara.html" class="nav-btn">Juara</a>
                 </div>
             </div>
         </main>
     </div>
-    <script src="script.js"></script>
 </body>
 </html> 
